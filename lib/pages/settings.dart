@@ -38,8 +38,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               if (pickedImage != null) {
                 ref.read(userProvider.notifier).updatePicture(File(pickedImage.path));
               }
-
-
             },
             child: CircleAvatar(
             radius: 100,
