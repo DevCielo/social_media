@@ -11,7 +11,14 @@ Welcome to the Basic Social Media App! This project is a simple social media app
 
 ## Screenshots
 
-![App Screenshot](path_to_screenshot)
+<img width="351" alt="image" src="https://github.com/user-attachments/assets/b7bc6760-e4d4-4f57-b502-67412a5c6f9e">
+<img width="351" alt="image" src="https://github.com/user-attachments/assets/3accd551-2466-414e-9125-7ce40af29f25">
+<img width="348" alt="image" src="https://github.com/user-attachments/assets/4a888fbe-9c9c-4cc0-a8b0-ddd86ded9e88">
+<img width="350" alt="image" src="https://github.com/user-attachments/assets/5c4ea50c-3245-4eba-a06b-367fb7975cd1">
+
+
+
+
 
 ## Installation
 
