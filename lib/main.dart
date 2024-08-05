@@ -25,7 +25,9 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primaryColor: Colors.blue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          titleTextStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16)
         ),
       ),
       home: StreamBuilder<User?>(

@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:widget_tree/models/tweet.dart';
+import 'package:widget_tree/pages/create.dart';
+import 'package:widget_tree/providers/tweet_provider.dart';
 import 'package:widget_tree/providers/user_provider.dart';
 import 'settings.dart';
 
@@ -14,14 +17,36 @@ class Home extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey,
+            height: 1,
+          ),
+        ),
         title: const Text('Home Screen'),
         leading: _buildProfileIcon(currentUser),
       ),
-      body: Column(
-        children: [
-          Text(currentUser.user.email),
-          Text(currentUser.user.name),
-        ],
+      body: ref.watch(feedProvider).when(
+        data: (List<Tweet> tweets) {
+          return ListView.separated(
+            separatorBuilder: (context, index) => const Divider(color:  Colors.black,),
+            itemCount: tweets.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: CircleAvatar(foregroundImage: NetworkImage(tweets[index].profilePic),),
+                title: Text(tweets[index].name, style: TextStyle(fontWeight: FontWeight.bold)),
+                subtitle: Text(tweets[index].tweet, style: TextStyle(color: Colors.black, fontSize: 16)), 
+              );
+            },
+          );
+        },
+        error: (error, stackTrace) => const Center(
+          child: Text('Error loading tweets'),
+        ),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
       drawer: Drawer(
         child: Column(
@@ -51,6 +76,14 @@ class Home extends ConsumerWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => CreateTweet()),
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
